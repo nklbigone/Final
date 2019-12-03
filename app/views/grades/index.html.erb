@@ -44,4 +44,6 @@
 
 <br>
 <%= paginate @grades %>
+<% if user_signed_in?  && current_user.admin? %>
 <%= link_to 'New Grade', new_grade_path, class: 'btn btn-success btn btn-sm' %>
+<% end %>
