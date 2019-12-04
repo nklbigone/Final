@@ -1,0 +1,28 @@
+<%= form_tag(users_index_path, method: :get) do %>
+  <p>
+    <%= text_field_tag :term, params[:term] %>
+    <%= submit_tag "Search"%>
+  </p>
+<% end %>
+<table class=" table table-striped">
+  <thead class="thead-dark">
+    <tr>
+    
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.last_name %></td>
+        <td><%=user.email %></td>
+        <td><%=user.address%></td>
+        <%end%>
+      </tr>
+  </tbody>
+</table>
+<%= paginate @users %>

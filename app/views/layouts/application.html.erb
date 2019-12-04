@@ -21,12 +21,15 @@
         <a class="nav-link"><%= link_to 'Home', root_path, :class => 'btn btn-outline-info mx-3' %></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"><%= link_to 'Edit profile', edit_user_registration_path, :class => ' btn btn-outline-info mx-3' %> </a>
+        <a class="nav-link"><%= link_to 'Edit profile', edit_user_registration_path(current_user.id), :class => ' btn btn-outline-info mx-3' %> </a>
       </li>
       <% if user_signed_in?  && current_user.admin? %>
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><%= link_to 'Course', courses_path, :class => 'btn btn-outline-info mx-3' %>
       </li>
+      <li class="nav-item">
+      <a class="nav-link"><%= link_to 'Users', users_index_path, :class => ' btn btn-outline-info mx-3' %> </a>
+    </li>
       <% end %>
       <li class="nav-item">
       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><%= link_to 'Grade', grades_path, :class => 'btn btn-outline-info mx-3' %>

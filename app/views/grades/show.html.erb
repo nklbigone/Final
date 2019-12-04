@@ -15,5 +15,7 @@
   <%= @grade.user_id %>
 </p>
 <%= render 'comments/comment'%>
+<% if user_signed_in?  && current_user.admin? %>
 <%= link_to 'Edit', edit_grade_path(@grade) %> |
+<%end%>
 <%= link_to 'Back', grades_path %>

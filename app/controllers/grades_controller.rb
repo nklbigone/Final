@@ -2,9 +2,7 @@ class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
   before_action :check_student, only: [:edit, :update, :destroy]
   def index
-    
     @grades = Grade.order('created_at DESC').page(params[:page])
-
   end
   def show
     @comments = Comment.where(grade_id: @grade)
@@ -17,7 +15,6 @@ class GradesController < ApplicationController
   end
   def create
     @grade =  Grade.new(grade_params)
-
     respond_to do |format|
       if @grade.save
         format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
@@ -54,14 +51,9 @@ class GradesController < ApplicationController
     def grade_params
       params.require(:grade).permit(:mark, :course_id, :user_id )
     end
-
-
-
     def check_student
       unless current_user.admin?
         redirect_to grades_url, notice: 'only admin can change any data'
       end
     end
-
-
 end

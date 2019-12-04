@@ -14,4 +14,13 @@ class User < ApplicationRecord
   validates :level, presence:true
   validates :classes, presence:true
   validates :email, presence:true
+  paginates_per 7
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['first_name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 end

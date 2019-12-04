@@ -20,8 +20,10 @@
         <td><%= grade.mark %>
         <td><%= grade.course.course_name %></td>
         <td><%= link_to 'Show', grade ,class: 'btn btn-success btn btn-sm' %></td>
+        <% if user_signed_in?  && current_user.admin? %>
         <td><%= link_to 'Edit', edit_grade_path(grade), class: 'btn btn-success btn btn-sm' %></td>
         <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn btn-sm' %></td>
+        <%end%>
       <% end %>
       </tr>
     <% end %>
