@@ -27,8 +27,8 @@
                     address: 'Kicukiro',
                     level: '5',
                     classes: 7,
-                    email: 'nklbigone@gmail.com',
+                    email: 'n@gmail.com',
                     password: 'alexis',
                     password_confirmation: 'alexis',
-                    admin: true
+                    admin: 'true'
                  )
