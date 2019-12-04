@@ -23,21 +23,17 @@ RSpec.feature "Users management", type: :feature do
         click_button '登録する'
         expect(page).to have_content 'Ruby'
     end
-    scenario "Test successful Search course" do
+    
+    scenario "Test Course list" do
         Course.create!(course_name: 'Math',
                         course_code: 'mth101', user_id: @user.id)
         visit courses_path
-        fill_in 'Search course', with: 'Math'
-        click_button '検索'
-        expect(page).to have_content 'Math'
     end
-    scenario "Test pagination" do
-        Course.create!(course_name: 'Math', course_code: 'mth101', user_id: @user.id)
-        Course.create!(course_name: 'Biology', course_code: 'bio101', user_id: @user.id)
-        Course.create!(course_name: 'Physics', course_code: 'Phy090', user_id: @user.id)
-        Course.create!(course_name: 'Math', course_code: 'mth101', user_id: @user.id)
-        Course.create!(course_name: 'Math', course_code: 'mth101', user_id: @user.id)
-        visit courses_path
-        expect(page).to have_xpath("//*[@class='pagination']//a[text()='2']")
-      end
+
+    scenario "Test course details" do
+        @course1=Course.create!(course_name: 'Math',
+                        course_code: 'mth101', user_id: @user.id)
+        @course1.course_name
+        @course1.course_code
+    end
 end

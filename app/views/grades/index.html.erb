@@ -16,28 +16,33 @@
   <tbody>
     <% @grades.each do |grade| %>
       <tr>
-
+      <% if user_signed_in?  && current_user.admin? || grade.user_id == current_user.id  %>
         <td><%= grade.mark %>
         <td><%= grade.course.course_name %></td>
         <td><%= link_to 'Show', grade ,class: 'btn btn-success btn btn-sm' %></td>
         <td><%= link_to 'Edit', edit_grade_path(grade), class: 'btn btn-success btn btn-sm' %></td>
         <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn btn-sm' %></td>
-
+      <% end %>
       </tr>
     <% end %>
     <td colspan="6">
     <b>
     <%= @user = current_user.last_name %>
-    <%= @grad = Grade.all.sum(:mark)*100/400 %>%
-    <% if @grad > 50 %>
+    <% @grad = Grade.all%>
+    <% sum = 0%>
+    <% @grad.each do |gradee|%>
+      <% if gradee.user_id == current_user.id%>
+       <% sum = sum + gradee.mark %>
+       <% end %>
+       <% end %>
+       <%= percent = sum *100/400 %>%
+    <% if percent > 50 %>
     <u style="color: black">Pass
     <%else%>
     <u style="color: red">Fails</u>
     </u>
     </td>
-
     <%end%>
-    
 
   </tbody>
 </table>

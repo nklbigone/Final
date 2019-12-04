@@ -5,8 +5,11 @@
 
   <div class="form-inputs">
     <%= f.input :mark %>
-    <%= f.association :course %>
-    <%= f.association :user %>
+    
+    <%= f.collection_select(:course_id, Course.all, :id, :course_name, {}, { :multiple =>false} ) %>    
+     
+    <%= f.collection_select(:user_id, User.all, :id, :last_name, {}, { :multiple =>false} ) %>    
+
   </div>
 
   <div class="form-actions">

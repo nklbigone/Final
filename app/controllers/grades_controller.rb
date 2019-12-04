@@ -1,9 +1,9 @@
 class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
-  before_action :check_student, only: [:edit, :destroy]
+  before_action :check_student, only: [:edit, :update, :destroy]
   def index
     
-    @grades = Grade.all.page(params[:page])
+    @grades = Grade.order('created_at DESC').page(params[:page])
 
   end
   def show
@@ -11,11 +11,12 @@ class GradesController < ApplicationController
   end
   def new
     @grade = Grade.new
+    @courses = Course.all
   end
   def edit
   end
   def create
-    @grade = Grade.new(grade_params)
+    @grade =  Grade.new(grade_params)
 
     respond_to do |format|
       if @grade.save
@@ -51,7 +52,7 @@ class GradesController < ApplicationController
       @grade = Grade.find(params[:id])
     end
     def grade_params
-      params.require(:grade).permit(:mark, :course_id, :user_id)
+      params.require(:grade).permit(:mark, :course_id, :user_id )
     end
 
 
