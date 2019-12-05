@@ -1,4 +1,5 @@
 <%= form_for ([@grade, @grade.comments.build]) do |f| %>
     <%= f.text_area :content, class:"single-input", placeholder:"enter comment", required:'true' %>
-    <%= f.submit "grade comment", class:"genric-btn info-border circle" %>
+    <%= f.submit "grade comment", class:'btn btn-success' %>
 <%end%>
+<br><br>

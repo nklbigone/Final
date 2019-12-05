@@ -2,8 +2,8 @@
   <% comments.each do |comment| %>
     <% if comment.id.present? %>
         <p><%= comment.content %></p>
-        <p><%= link_to 'Delete', [comment.grade, comment], :method => :delete, data: { confirm: 'Are you sure?' }%></p>
-         <p> <%=link_to 'Edit', edit_grade_comment_path(@grade, @comment)%>
+        <p><%= link_to 'Delete', [comment.grade, comment], :method => :delete, data: { confirm: 'Are you sure?' }, class:"btn ntn-info"%></p>
+         <p> <%=link_to 'Edit', edit_grade_comment_path(@grade, @comment), class:'btn ntn-info'%>
         
     <% end %>
   <% end %>

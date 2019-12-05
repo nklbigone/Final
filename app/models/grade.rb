@@ -1,7 +1,7 @@
 class Grade < ApplicationRecord
   belongs_to :course
   belongs_to :user
-  has_many  :comments
+  has_many  :comments, dependent: :destroy
   validates :course, presence:true
   validates :user, presence:true
   validates :mark, presence:true
